@@ -1,5 +1,4 @@
-import { Stack } from 'expo-router';
-import { View, Text, StyleSheet } from 'react-native';
+import { Stack, Tabs } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 import "../global.css"
@@ -11,7 +10,9 @@ export default function _layout() {
             <Stack screenOptions={{
                 header: () => (<Header />)
             }}>
+
             </Stack>
+            <StatusBar style='auto' />
         </SafeAreaProvider>
     )
 }

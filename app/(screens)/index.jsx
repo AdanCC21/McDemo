@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { FlatList, View, Dimensions, Text, Image, Pressable } from 'react-native'
-import hambuger from '../assets/images/hambuger.png'
-import cupon from '../assets/images/icons/cupon.png'
+import hambuger from '../../assets/images/hambuger.png'
+import cupon from '../../assets/images/icons/cupon.png'
 import { useNavigation } from 'expo-router'
 
 export default function index({ }) {
