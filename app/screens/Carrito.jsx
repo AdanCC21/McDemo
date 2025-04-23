@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, Pressable, Dimensions, Image, FlatList } from 'react-native'
-import hambuger from '../assets/images/hambuger.png'
+import hambuger from '../../assets/images/hambuger.png'
 
 export default function Carrito() {
     const title = 'Hamburgesa grande'
