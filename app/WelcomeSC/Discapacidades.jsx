@@ -78,6 +78,11 @@ export default function Discapacidades() {
                     <Text style={{color:'white'}}>Continuar</Text>
                 </Pressable>
             </ScrollView>
+            <Pressable onPress={()=>{
+                navigator.navigate('/screens/Home', {})
+            }}>
+                <Text>Continuar</Text>
+            </Pressable>
         </View>
     )
 }
