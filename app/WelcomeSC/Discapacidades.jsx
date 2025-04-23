@@ -4,7 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 export default function Discapacidades() {
     const [disc, setDisc] = useState([false, false, false, false]);
-    const navigate = useNavigation();
+    const navigator = useNavigation();
     const handlePress = (index) => {
         const temp = [...disc]; // Crea una copia del array para no mutar el estado directamente
         temp[index] = !temp[index];
@@ -71,9 +71,9 @@ export default function Discapacidades() {
                     </Pressable>
                 </View>
                 <Pressable
-                onPress={()=>{
-                    navigator.navigate('/screens/Home',{});
-                }}>
+                    onPress={() => {
+                        navigator.navigate('gens');
+                    }}>
                     <Text>Continuar</Text>
                 </Pressable>
             </ScrollView>

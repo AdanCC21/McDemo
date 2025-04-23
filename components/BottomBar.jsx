@@ -6,13 +6,13 @@ export default function BottomBar() {
     const navigator = useNavigation();
     return (
         <View className=' justify-around py-2 bg-stone-500' style={{ flexDirection: 'row' }}>
-            <Pressable onPress={() => { navigator.navigate('/') }}>
+            <Pressable onPress={() => { navigator.navigate('gens') }}>
                 <Text>Inicio</Text>
             </Pressable>
-            <Pressable onPress={() => { navigator.navigate('Carrito',{}) }}>
+            <Pressable onPress={() => { navigator.navigate('gens/Carrito',{}) }}>
                 <Text>Carrito</Text>    
             </Pressable>
-            <Pressable onPress={() => { navigator.navigate('/') }}>
+            <Pressable onPress={() => { navigator.navigate('gens') }}>
                 <Text>Maps</Text>
             </Pressable>
         </View>
