@@ -56,7 +56,7 @@ export default function index({ }) {
                     renderItem={({ item, index }) => (
                         <Pressable className='mx-3'
                             onPress={() => {
-                                router.push('OrderPrev', {
+                                router.push('/gens/OrderPrev', {
                                     title: item.title,
                                     price: item.price,
                                     foods: [{

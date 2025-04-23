@@ -3,7 +3,7 @@ import hambuger from '../../assets/images/hambuger.png'
 import { Text, Image, FlatList, View, Dimensions, Pressable } from 'react-native'
 import { useLocalSearchParams} from 'expo-router';
 import Feather from '@expo/vector-icons/Feather'
-import { router } from 'expo-router/build/global-state/routing';
+import { router } from 'expo-router';
 
 const foodsE = [{
     id: 23,
@@ -66,7 +66,7 @@ export default function OrderPrev() {
                     borderRadius: 12,
                 }}
                 onPress={()=>{
-                    router.push('Carrito')
+                    router.push('/gens/Carrito');
                 }}
             >
                 <Text style={{ marginRight: 10 }}>Agregar Al Carrito</Text>
