@@ -1,8 +1,9 @@
 import { router } from 'expo-router';
 import React, { useState } from 'react'
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 export default function Discapacidades() {
+    const { width, height } = Dimensions.get('window')
     const [disc, setDisc] = useState([false, false, false, false]);
     const handlePress = (index) => {
         const temp = [...disc]; // Crea una copia del array para no mutar el estado directamente
@@ -11,14 +12,14 @@ export default function Discapacidades() {
     };
 
     return (
-        <View>
+        <View style={{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }} className='bg-[#d62718]'>
             <View>
-                <Text>Dificultades</Text>
-                <Text>¿Cuentas con alguna de las siguientes dificultades?</Text>
+                <Text style={{ color: 'white' }}>Dificultades</Text>
+                <Text style={{ color: 'white' }}>¿Cuentas con alguna de las siguientes dificultades?</Text>
             </View>
             <ScrollView>
                 <View style={styles.discap}>
-                    <Text>Sordera</Text>
+                    <Text style={{ color: 'white' }}>Sordera</Text>
                     <Pressable
                         onPress={() => {
                             handlePress(0);
@@ -31,7 +32,7 @@ export default function Discapacidades() {
                     </Pressable>
                 </View>
                 <View style={styles.discap}>
-                    <Text>Cegera</Text>
+                    <Text style={{ color: 'white' }}>Cegera</Text>
                     <Pressable
                         onPress={() => {
                             handlePress(1);
@@ -44,7 +45,7 @@ export default function Discapacidades() {
                     </Pressable>
                 </View>
                 <View style={styles.discap}>
-                    <Text>Motriz</Text>
+                    <Text style={{ color: 'white' }}>Motriz</Text>
                     <Pressable
                         onPress={() => {
                             handlePress(2);
@@ -57,7 +58,7 @@ export default function Discapacidades() {
                     </Pressable>
                 </View>
                 <View style={styles.discap}>
-                    <Text>Ninguna</Text>
+                    <Text style={{ color: 'white' }}>Ninguna</Text>
                     <Pressable
                         onPress={() => {
                             handlePress(3);
@@ -69,6 +70,12 @@ export default function Discapacidades() {
                         )}
                     </Pressable>
                 </View>
+                <Pressable
+                    onPress={() => {
+                        navigator.navigate('gens');
+                    }}>
+                    <Text style={{color:'white'}}>Continuar</Text>
+                </Pressable>
             </ScrollView>
             <Pressable onPress={()=>{
                 router.push('/screens/Home');

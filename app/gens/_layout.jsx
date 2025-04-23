@@ -13,8 +13,8 @@ export default function _layout() {
             }}>
 
             </Stack>
-            <BottomBar />
             <StatusBar style='auto' />
+            {/* <BottomBar /> */}
         </SafeAreaProvider>
     )
 }

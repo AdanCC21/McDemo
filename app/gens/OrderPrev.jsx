@@ -1,8 +1,9 @@
 import React from 'react'
 import hambuger from '../../assets/images/hambuger.png'
-import { Text, Image, FlatList, View, Dimensions } from 'react-native'
-import { useLocalSearchParams } from 'expo-router';
+import { Text, Image, FlatList, View, Dimensions, Pressable } from 'react-native'
+import { useLocalSearchParams, useNavigation } from 'expo-router';
 import Feather from '@expo/vector-icons/Feather'
+import { navigate } from 'expo-router/build/global-state/routing';
 
 const foodsE = [{
     id: 23,
@@ -19,6 +20,7 @@ const foodsE = [{
 export default function OrderPrev() {
     const { title = "", price = 0, foods = [] } = useLocalSearchParams();
     const { width, height } = Dimensions.get('window');
+    const navigator = useNavigation();
     return (
         <View>
             {/* Combinacion de todo */}
@@ -30,7 +32,7 @@ export default function OrderPrev() {
 
             {/* Lista de comidas */}
             <FlatList
-                data={foodsE}
+                data={foods}
                 key={(item) => item.title}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
@@ -51,7 +53,7 @@ export default function OrderPrev() {
                 )}
             />
             {/* Botón fijo al fondo */}
-            <View
+            <Pressable
                 style={{
                     position: 'absolute',
                     bottom: 20,
@@ -64,10 +66,13 @@ export default function OrderPrev() {
                     padding: 10,
                     borderRadius: 12,
                 }}
+                onPress={()=>{
+                    navigator.navigate('Carrito')
+                }}
             >
                 <Text style={{ marginRight: 10 }}>Agregar Al Carrito</Text>
                 <Feather name="shopping-cart" size={24} color="black" />
-            </View>
+            </Pressable>
         </View>
     )
 }
