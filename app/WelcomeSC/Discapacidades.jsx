@@ -1,8 +1,10 @@
+import { useNavigation } from 'expo-router';
 import React, { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 export default function Discapacidades() {
     const [disc, setDisc] = useState([false, false, false, false]);
+    const navigator = useNavigation();
     const handlePress = (index) => {
         const temp = [...disc]; // Crea una copia del array para no mutar el estado directamente
         temp[index] = !temp[index];
@@ -69,6 +71,11 @@ export default function Discapacidades() {
                     </Pressable>
                 </View>
             </ScrollView>
+            <Pressable onPress={()=>{
+                navigator.navigate('/screens/Home', {})
+            }}>
+                <Text>Continuar</Text>
+            </Pressable>
         </View>
     )
 }
