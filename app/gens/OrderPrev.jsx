@@ -32,7 +32,7 @@ export default function OrderPrev() {
 
             {/* Lista de comidas */}
             <FlatList
-                data={foodsE}
+                data={foods}
                 key={(item) => item.title}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
