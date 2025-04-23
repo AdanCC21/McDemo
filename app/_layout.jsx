@@ -3,15 +3,15 @@ import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Header from '../components/Header';
 import "../global.css"
+import { StatusBar } from 'expo-status-bar';
 
 export default function _layout() {
     return (
         <SafeAreaProvider>
-            <Text className="text-red-500">HOLAAAAAAAAa</Text>
-            {/* <Stack screenOptions={{
+            <Stack screenOptions={{
                 header: () => (<Header />)
             }}>
-            </Stack> */}
+            </Stack>
         </SafeAreaProvider>
     )
 }
