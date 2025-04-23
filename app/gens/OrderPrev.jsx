@@ -1,9 +1,9 @@
 import React from 'react'
 import hambuger from '../../assets/images/hambuger.png'
 import { Text, Image, FlatList, View, Dimensions, Pressable } from 'react-native'
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { useLocalSearchParams} from 'expo-router';
 import Feather from '@expo/vector-icons/Feather'
-import { navigate } from 'expo-router/build/global-state/routing';
+import { router } from 'expo-router/build/global-state/routing';
 
 const foodsE = [{
     id: 23,
@@ -20,7 +20,6 @@ const foodsE = [{
 export default function OrderPrev() {
     const { title = "", price = 0, foods = [] } = useLocalSearchParams();
     const { width, height } = Dimensions.get('window');
-    const navigator = useNavigation();
     return (
         <View>
             {/* Combinacion de todo */}
@@ -67,7 +66,7 @@ export default function OrderPrev() {
                     borderRadius: 12,
                 }}
                 onPress={()=>{
-                    navigator.navigate('Carrito')
+                    router.push('Carrito')
                 }}
             >
                 <Text style={{ marginRight: 10 }}>Agregar Al Carrito</Text>

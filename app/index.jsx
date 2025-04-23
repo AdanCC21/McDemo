@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { Dimensions, Image, View } from 'react-native'
 import Logo from '../assets/images/McDonald.png'
-import { useNavigation } from 'expo-router'
+import { router } from 'expo-router'
 
-export default function index() {
-    const navigator = useNavigation();
+export default function index() { 
     const { width, height } = Dimensions.get('window');
     useEffect(() => {
         setTimeout(() => {
-            navigator.navigate('WelcomeSC/Welcome', {})
+            router.push('WelcomeSC/Welcome');
         }, 1000)
     }, [])
     return (

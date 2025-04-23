@@ -3,7 +3,6 @@ import { FlatList, View, Dimensions, Text, Image, Pressable } from 'react-native
 import hambuger from '../../assets/images/hambuger.png'
 import cupon from '../../assets/images/icons/cupon.png'
 import { router } from 'expo-router'
-import BottomBar from '../../components/BottomBar'
 
 export default function index({ }) {
     const { width, height } = Dimensions.get('window');
@@ -90,8 +89,6 @@ export default function index({ }) {
                     Presiona aqui para ver tus cupones
                 </Text>
             </View>
-            
-            
         </View>
     )
 }
