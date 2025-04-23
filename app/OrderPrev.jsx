@@ -1,8 +1,9 @@
 import React from 'react'
 import hambuger from '../assets/images/hambuger.png'
-import { Text, Image, FlatList, View } from 'react-native'
+import { Text, Image, FlatList, View, Dimensions } from 'react-native'
 import { useLocalSearchParams } from 'expo-router';
-
+import AmountBut from '../components/AmountBut'
+import Feather from '@expo/vector-icons/Feather'
 
 const foodsE = [{
     id: 23,
@@ -18,6 +19,7 @@ const foodsE = [{
 
 export default function OrderPrev() {
     const { title = "", price = 0, foods = [] } = useLocalSearchParams();
+    const { width, height } = Dimensions.get('window');
     return (
         <View>
             {/* Combinacion de todo */}
@@ -49,6 +51,24 @@ export default function OrderPrev() {
                     </View>
                 )}
             />
+            {/* Botón fijo al fondo */}
+            <View
+                style={{
+                    position: 'absolute',
+                    bottom: 20,
+                    left: width * 0.2,
+                    width: width * 0.6,
+                    flexDirection: 'row',
+                    backgroundColor: '#efFF00',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 10,
+                    borderRadius: 12,
+                }}
+            >
+                <Text style={{ marginRight: 10 }}>Agregar Al Carrito</Text>
+                <Feather name="shopping-cart" size={24} color="black" />
+            </View>
         </View>
     )
 }
