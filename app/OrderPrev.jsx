@@ -1,5 +1,5 @@
 import React from 'react'
-import hambuger from '../../../assets/images/hambuger.png'
+import hambuger from '../assets/images/hambuger.png'
 import { Text, Image, FlatList, View } from 'react-native'
 import { useLocalSearchParams } from 'expo-router';
 
