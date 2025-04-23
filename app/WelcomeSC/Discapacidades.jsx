@@ -72,7 +72,7 @@ export default function Discapacidades() {
                 </View>
                 <Pressable
                     onPress={() => {
-                        navigator.navigate('gens');
+                        router.push('gens');
                     }}>
                     <Text style={{color:'white'}}>Continuar</Text>
                 </Pressable>
