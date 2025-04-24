@@ -1,69 +1,84 @@
-// McDemo/components/AccessibilityOfferModal.js
 import React from 'react';
-import { Modal, View, Text, Button, StyleSheet, Pressable, Platform } from 'react-native';
+import {
+  Modal,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Pressable,
+  Platform,
+} from 'react-native';
+
 import { useAccessibility } from '../AccessibilityContext';
+import * as IntentLauncher from 'expo-intent-launcher';
+
+const openAccessibilitySettings = () => {
+  if (Platform.OS === 'android') {
+    IntentLauncher.startActivityAsync(IntentLauncher.ActivityAction.ACCESSIBILITY_SETTINGS)
+      .catch(err => console.error('Error al abrir ajustes de accesibilidad:', err));
+  } else {
+    console.log('Solo se soporta Android en este caso.');
+  }
+};
 
 const AccessibilityOfferModal = () => {
-    const {
-        isLoading, isNativeScreenReaderEnabled, hasSeenAccessibilityOffer,
-        shouldShowAccessibilityOfferManually, // El estado clave
-        toggleAppAccessibleMode, markOfferAsSeen,
-    } = useAccessibility();
+  const {
+    isLoading,
+    isNativeScreenReaderEnabled,
+    hasSeenAccessibilityOffer,
+    shouldShowAccessibilityOfferManually,
+    markOfferAsSeen,
+  } = useAccessibility();
 
   const modalVisible =
-    shouldShowAccessibilityOfferManually && // <-- ¡Debe ser activado manualmente!
+    shouldShowAccessibilityOfferManually &&
     !isLoading &&
     !isNativeScreenReaderEnabled &&
     !hasSeenAccessibilityOffer;
-  
-    console.log(`>>> (Modal) Renderizando. manualTrigger=<span class="math-inline">\{shouldShowAccessibilityOfferManually\}, isLoading\=</span>{isLoading}, nativeSR=<span class="math-inline">\{isNativeScreenReaderEnabled\}, seenOffer\=</span>{hasSeenAccessibilityOffer}. Visible=${modalVisible}`);
-  if (!modalVisible) {
-      return null;
-  }
-  const handleEnableMode = () => {
-    if (!isAppAccessibleModeEnabled) {
-        toggleAppAccessibleMode();
-    } else {
-        markOfferAsSeen(); // Llama a markOfferAsSeen que ahora resetea el trigger manual
-    }
-  };
-
-  const handleDismiss = () => {
-    markOfferAsSeen(); // Llama a markOfferAsSeen que ahora resetea el trigger manual
-  };
 
   if (!modalVisible) {
     return null;
   }
 
-  // El JSX del Modal (Text, Button, View...) sigue igual que antes
+  const handleAccept = () => {
+    markOfferAsSeen();
+    openAccessibilitySettings(); // <-- Redirige a ajustes
+  };
+
+  const handleDecline = () => {
+    markOfferAsSeen();
+  };
+
   return (
     <Modal
       transparent={true}
       visible={true}
       animationType="fade"
-      onRequestClose={handleDismiss}
+      onRequestClose={handleDecline}
     >
-      <Pressable style={styles.centeredView} onPress={handleDismiss}>
+      <Pressable style={styles.centeredView} onPress={handleDecline}>
         <Pressable onPress={() => {}}>
-            <View style={styles.modalView}>
-                <Text style={styles.modalTitle}>Modo Accesible Opcional</Text>
-                <Text style={styles.modalText}>
-                    Hemos detectado que no tienes un servicio de accesibilidad nativo activo.
-                    ¿Te gustaría activar nuestro Modo Accesible para facilitar la navegación (p.ej. botones más grandes)?
-                    Puedes cambiar esto después en la configuración.
-                </Text>
-                <View style={styles.buttonContainer}>
-                    <Button title="Activar Ahora" onPress={handleEnableMode} />
-                    <View style={{ width: 15 }} />
-                    <Button title="No, gracias" onPress={handleDismiss} color="#666" />
-                </View>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Modo Accesible Opcional</Text>
+            <Text style={styles.modalText}>
+              Hemos detectado que no tienes un servicio de accesibilidad nativo activo.
+              ¿Te gustaría activar el Modo Accesible o ver las opciones de accesibilidad en tu dispositivo?
+              Puedes cambiar esto más tarde en configuración.
+            </Text>
+            <View style={styles.buttonContainer}>
+              <Button title="Sí, abrir ajustes" onPress={handleAccept} />
+              <View style={{ width: 15 }} />
+              <Button title="No, gracias" onPress={handleDecline} color="#666" />
             </View>
+          </View>
         </Pressable>
       </Pressable>
     </Modal>
   );
 };
+
+export default AccessibilityOfferModal;
+
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
@@ -77,22 +92,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 35,
     alignItems: 'center',
-    // --- Inicio de la Corrección de Sombra ---
     ...Platform.select({
-      ios: { // Mantener estilos iOS
+      ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.23, // Usar número directamente
+        shadowOpacity: 0.23,
         shadowRadius: 2.62,
       },
-      android: { // Mantener estilo Android
+      android: {
         elevation: 5,
       },
-      web: { // Usar boxShadow para Web
-        boxShadow: '0px 2px 2.62px rgba(0, 0, 0, 0.23)' // offsetX offsetY blurRadius color
-      }
-    })
-    // --- Fin de la Corrección de Sombra ---
+      web: {
+        boxShadow: '0px 2px 2.62px rgba(0, 0, 0, 0.23)',
+      },
+    }),
   },
   modalTitle: {
     fontSize: 18,
@@ -106,9 +119,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around', // 'space-evenly' podría dar mejor espacio
-     width: '100%',
+    justifyContent: 'space-around',
+    width: '100%',
   },
 });
-
-export default AccessibilityOfferModal;

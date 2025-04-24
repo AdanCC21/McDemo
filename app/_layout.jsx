@@ -17,6 +17,7 @@ export default function RootLayout() {
         <SafeAreaProvider>
             <AccessibilityProvider>
                 <AccessibilityOfferModal />
+                
                 <Stack
                     screenOptions={{
                         // Puedes definir aquí opciones globales si aplican a todas
