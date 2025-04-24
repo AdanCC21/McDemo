@@ -1,13 +1,12 @@
-import { useNavigation } from 'expo-router';
+import { router } from 'expo-router';
 import React, { useEffect } from 'react'
 import { Dimensions, Text, View } from 'react-native'
 
 export default function Welcome() {
     const { width, height } = Dimensions.get('window');
-    const navigator = useNavigation();
     useEffect(() => {
         setTimeout(() => {
-            navigator.navigate('WelcomeSC/Discapacidades')
+            router.push('WelcomeSC/Discapacidades')
         }, 2200);
     }, [])
     return (
