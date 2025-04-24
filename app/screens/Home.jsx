@@ -46,7 +46,7 @@ export default function index({ }) {
             </View>
 
             <View>
-                <Text>Para ti</Text>
+                <Text className='text-xl font-bold mb-3 ml-3'>Para ti gayw</Text>
                 <FlatList
                     data={fyp}
                     horizontal
