@@ -57,6 +57,8 @@ function Game() {
             alignItems: 'center',
             transform: [{ rotate: `${rotate}deg` }],
           }}
+          accessible={false}
+          importantForAccessibility="no"
         >
           <View
             style={{
@@ -75,8 +77,10 @@ function Game() {
               shadowOpacity: 0.2,
               shadowRadius: 2,
             }}
+            accessible={false}
+            importantForAccessibility="no"
           >
-            <Text style={[styles.sectorText, { color: i % 2 === 0 ? '#fff' : '#e53935', fontWeight: 'bold' }]}>{label}</Text>
+            <Text style={[styles.sectorText, { color: i % 2 === 0 ? '#fff' : '#e53935', fontWeight: 'bold' }]} accessible={false} importantForAccessibility="no">{label}</Text>
           </View>
         </View>
       );
@@ -99,6 +103,7 @@ function Game() {
                 outputRange: ['0deg', '3600deg'],
               }) }],
             }}
+            importantForAccessibility="no-hide-descendants"
           >
             {renderSectors()}
           </Animated.View>
