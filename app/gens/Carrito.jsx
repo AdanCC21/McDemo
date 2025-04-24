@@ -32,7 +32,7 @@ export default function Carrito() {
     return (
         <View style={{ flex: 1 }}>
             {/* Encabezado fijo */}
-            <Text>Pedido actual</Text>
+            <Text style={{ fontSize: 32 }} className='font-bold'>Pedido actual</Text>
 
             {/* FlatList scrollable */}
             <FlatList

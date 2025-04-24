@@ -6,9 +6,15 @@ export default function Discapacidades() {
     const { width, height } = Dimensions.get('window')
     const [disc, setDisc] = useState([false, false, false, false]);
     const handlePress = (index) => {
-        const temp = [...disc];
-        temp[index] = !temp[index];
-        setDisc(temp);
+        if (index === 3) {
+            const temp = [false,false,false,true];
+            setDisc(temp);
+        } else {
+            const temp = [...disc];
+            temp[3] = false;
+            temp[index] = !temp[index];
+            setDisc(temp);
+        }
     };
 
     return (
@@ -28,8 +34,8 @@ export default function Discapacidades() {
                         }}
                     >
                         {disc[0] ? (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#eeFF00]'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#0000ff]'></View>
+                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
+                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
                         )}
                     </Pressable>
                 </View>
@@ -41,8 +47,8 @@ export default function Discapacidades() {
                         }}
                     >
                         {disc[1] ? (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#eeFF00]'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#0000ff]'></View>
+                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
+                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
                         )}
                     </Pressable>
                 </View>
@@ -54,8 +60,8 @@ export default function Discapacidades() {
                         }}
                     >
                         {disc[2] ? (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#eeFF00]'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#0000ff]'></View>
+                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
+                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
                         )}
                     </Pressable>
                 </View>
@@ -67,8 +73,8 @@ export default function Discapacidades() {
                         }}
                     >
                         {disc[3] ? (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#eeFF00]'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#0000ff]'></View>
+                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
+                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
                         )}
                     </Pressable>
                 </View>
