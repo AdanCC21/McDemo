@@ -7,43 +7,48 @@ import { router } from 'expo-router';
 
 const foodsE = [{
     id: 23,
-    title: "hambuger",
+    title: "Hamburgesa Sencilla",
     price: 231,
-    ingredients: [{ name: "Meat", amount: 1, basePrice: 20 }, { name: "Meat", amount: 1, basePrice: 20 }, { name: "Meat", amount: 1, basePrice: 20 }, { name: "Meat", amount: 1, basePrice: 20 }]
+    ingredients: [{ name: "Carne", amount: 1, basePrice: 20 }, { name: "Queso", amount: 2, basePrice: 20 }, { name: "Tomates", amount: 4, basePrice: 20 }, { name: "Lechuga", amount: 2, basePrice: 20 }]
 }, {
     id: 25,
     title: "McDesayuno",
-    price: 231,
-    ingredients: [{ name: "Meat", amount: 1, basePrice: 20 }, { name: "Meat", amount: 1, basePrice: 20 }, { name: "Meat", amount: 1, basePrice: 20 }, { name: "Meat", amount: 1, basePrice: 20 }]
+    price: 200,
+    ingredients: [{ name: "Carne", amount: 1, basePrice: 20 }, { name: "Queso", amount: 2, basePrice: 20 }, { name: "Tomates", amount: 4, basePrice: 20 }, { name: "Lechuga", amount: 2, basePrice: 20 }]
+}, {
+    id: 27,
+    title: "McDesayuno",
+    price: 200,
+    ingredients: [{ name: "Carne", amount: 1, basePrice: 20 }, { name: "Queso", amount: 2, basePrice: 20 }, { name: "Tomates", amount: 4, basePrice: 20 }, { name: "Lechuga", amount: 2, basePrice: 20 }]
 }]
 
 export default function OrderPrev() {
-    const { title = "", price = 0, foods = [] } = useLocalSearchParams();
+    const { title = "Hamburgesa Sencilla", price = 150, foods = [] } = useLocalSearchParams();
     const { width, height } = Dimensions.get('window');
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             {/* Combinacion de todo */}
             <View className='mx-auto'>
-                <Text>{title}</Text>
-                <Image source={hambuger} style={{ width: 200, height: 200 }} />
-                <Text>{price}</Text>
+                <Text style={{ textAlign: 'center', fontWeight: 600, fontSize: 30 }}>{title}</Text>
+                <Image source={hambuger} style={{ width: 200, height: 200, margin: 'auto' }} />
+                <Text style={{ textAlign: 'center', fontSize: 18, color: '#838383' }}>{price}$</Text>
             </View>
 
             {/* Lista de comidas */}
             <FlatList
-                data={foods}
+                data={foodsE}
                 key={(item) => item.title}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
-                    <Pressable onPress={() => { router.push('gens/Ingredients'), {} }}>
+                    <Pressable onPress={() => { router.push({ pathname: 'gens/Ingredients', params: { title: item.title, price: item.price, ingredients: JSON.stringify(item.ingredients) } }) }}>
                         <View className='justify-between p-4 m-3' style={styles.card}>
                             <View>
-                                <Text>{item.title}</Text>
+                                <Text style={{ fontSize: 20, fontWeight: 500 }}>{item.title}</Text>
                                 <FlatList
                                     data={item.ingredients}
                                     renderItem={({ item, index }) => (
                                         <View>
-                                            <Text>{item.name}</Text>
+                                            <Text style={{ fontWeight: 300, fontSize: 12 }}>{item.name}</Text>
                                         </View>
                                     )}
                                 />

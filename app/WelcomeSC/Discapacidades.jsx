@@ -33,7 +33,7 @@ export default function Discapacidades() {
 
   return (
     <View style={[styles.container, { width, height }]}>
-      <ScrollView contentContainerStyle={[styles.scrollContent,{width:width*0.8, height:height, marginHorizontal:width*0.1}]}>
+      <ScrollView contentContainerStyle={[styles.scrollContent, { width: width * 0.8, height: height, marginHorizontal: width * 0.1 }]}>
         <View style={styles.header}>
           <Text style={styles.title}>Dificultades</Text>
           <Text style={styles.subtitle}>¿Cuentas con alguna de las siguientes dificultades?</Text>

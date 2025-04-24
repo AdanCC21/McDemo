@@ -50,7 +50,7 @@ export default function index({ }) {
 
     return (
         <View className='px-3'>
-            <View>
+            <View style={{paddingTop:10}}>
                 <PromoCarousel listOfItems={listOfItems} />
             </View>
 
@@ -89,8 +89,9 @@ export default function index({ }) {
                 >
                 </FlatList>
             </View>
-            <Pressable onPress={openCouponModal}>
-                <View style={styles.card} className='my-2 py-3'>
+            
+            <Pressable style={{marginVertical:10}} onPress={openCouponModal}>
+                <View style={styles.card} className='my-2 py-5 px-3'>
                     <View className='flex flex-row'>
                         <Image className='ml-3' style={{ width: 40, height: 40 }} source={cupon} />
                         <Text className='font-bold mx-2 my-auto' style={{ fontSize: 20 }}>Cupones</Text>

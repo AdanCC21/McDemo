@@ -6,11 +6,12 @@ import hambuger from '../../assets/images/hambuger.png';
 
 export default function Ingredients() {
     const {
-        title = "hambuger",
-        price = 231,
+        title,
+        price,
         image,
-        ingredients = Array(8).fill({ name: 'meat', priceBase: 10, amount: 10 })
+        ingredients
     } = useLocalSearchParams();
+    const parsedIngredients = ingredients ? JSON.parse(ingredients) : [];
 
     const [amount, setAmount] = useState();
 
@@ -33,7 +34,7 @@ export default function Ingredients() {
             <Text style={styles.ingredientHeader} className='font-bold'>Ingredientes</Text>
 
             <FlatList
-                data={ingredients}
+                data={parsedIngredients}
                 keyExtractor={(_, index) => index.toString()}
                 contentContainerStyle={styles.listContent}
                 renderItem={({ item }) => (
@@ -49,7 +50,7 @@ export default function Ingredients() {
 
             <Text style={styles.ingredientHeader} className='font-bold'>Agregar</Text>
             <FlatList
-                data={ingredients}
+                data={parsedIngredients}
                 keyExtractor={(_, index) => index.toString()}
                 contentContainerStyle={styles.listContent}
                 renderItem={({ item }) => (
