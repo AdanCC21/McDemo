@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { FlatList, View, Dimensions, Text, Image, Pressable } from 'react-native'
+import { FlatList, View, Dimensions, Text, Image, Pressable, StyleSheet } from 'react-native'
 import hambuger from '../../assets/images/hambuger.png'
 import location from '../../assets/images/location.png'
 import cupon from '../../assets/images/icons/cupon.png'
