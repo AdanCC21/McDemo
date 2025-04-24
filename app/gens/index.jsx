@@ -11,7 +11,7 @@ const sampleCouponsData = [
     { id: 'c1', description: '20% de descuento en 2 hamburguesas sencillas', validFrom: '07/10/2024', validUntil: '04/12/2024', iconName: 'fast-food-outline' },
     { id: 'c2', description: '10% de descuento en 2 desayunos simples', validFrom: '07/10/2024', validUntil: '04/12/2024' },
     { id: 'c3', description: 'Bebida gratis en tu próxima compra', validFrom: '01/01/2025', validUntil: '31/01/2025', iconName: 'beer-outline' },
-  ];
+];
 
 export default function index({ }) {
     const [isCouponModalVisible, setCouponModalVisible] = useState(false);
@@ -90,7 +90,7 @@ export default function index({ }) {
                 </FlatList>
             </View>
             <Pressable onPress={openCouponModal}>
-                <View className='bg-[#E0E0E0] my-2 py-3'>
+                <View style={styles.card} className='my-2 py-3'>
                     <View className='flex flex-row'>
                         <Image className='ml-3' style={{ width: 40, height: 40 }} source={cupon} />
                         <Text className='font-bold mx-2 my-auto' style={{ fontSize: 20 }}>Cupones</Text>
@@ -113,7 +113,7 @@ export default function index({ }) {
 
 const styles = StyleSheet.create({
     card: {
-        borderRadius:12,
+        borderRadius: 12,
         elevation: 6,
         backgroundColor: 'white'
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 import hambuger from '../../assets/images/hambuger.png'
-import { Text, Image, FlatList, View, Dimensions, Pressable } from 'react-native'
+import { Text, Image, FlatList, View, Dimensions, Pressable, StyleSheet } from 'react-native'
 import { useLocalSearchParams } from 'expo-router';
 import Feather from '@expo/vector-icons/Feather'
 import { router } from 'expo-router';
@@ -35,8 +35,8 @@ export default function OrderPrev() {
                 key={(item) => item.title}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
-                    <Pressable onPress={()=>{router.push('gens/Ingredients'),{}}}>
-                        <View className='justify-between p-4 bg-stone-400 m-3 rounded-xl' style={{ flexDirection: "row" }}>
+                    <Pressable onPress={() => { router.push('gens/Ingredients'), {} }}>
+                        <View className='justify-between p-4 m-3' style={styles.card}>
                             <View>
                                 <Text>{item.title}</Text>
                                 <FlatList
@@ -77,3 +77,12 @@ export default function OrderPrev() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    card: {
+        flexDirection: 'row',
+        borderRadius: 12,
+        elevation: 6,
+        backgroundColor: 'white'
+    }
+})

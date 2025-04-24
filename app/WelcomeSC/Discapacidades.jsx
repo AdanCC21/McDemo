@@ -28,7 +28,7 @@ export default function Discapacidades() {
     if (isMotrizSelected) {
       triggerManualAccessibilityOffer();
     }
-    router.push('/screens/Home');
+    router.push('/gens');
   };
 
   return (
