@@ -39,4 +39,4 @@ Nuestro objetivo es ofrecer una plataforma accesible para todos, incluyendo pers
 ---
 
 ¡Gracias por visitar nuestro proyecto!  
-**#Mc4All 🥑 | #LosHackamoles | Genius Arena 2025 🚀**
+**#Mc4All 🥑 | Los Hackamoles | Genius Arena 2025 🚀**
