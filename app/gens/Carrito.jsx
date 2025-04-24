@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { View, Text, Pressable, Dimensions, Image, FlatList } from 'react-native'
+import { View, Text, Pressable, Dimensions, Image, FlatList, StyleSheet } from 'react-native'
 import hambuger from '../../assets/images/hambuger.png'
+import { router } from 'expo-router'
 
 export default function Carrito() {
     const title = 'Hamburgesa grande'
@@ -25,13 +26,12 @@ export default function Carrito() {
         // Agrega más si quieres
     ]
 
-    const [amount, setAmount] = useState(0)
     const { width, height } = Dimensions.get('window')
 
     return (
         <View style={{ flex: 1 }}>
             {/* Encabezado fijo */}
-            <Text>Pedido actual</Text>
+            <Text style={{ fontSize: 32 }} className='font-bold'>Pedido actual</Text>
 
             {/* FlatList scrollable */}
             <FlatList
@@ -40,22 +40,33 @@ export default function Carrito() {
                 data={foods}
                 keyExtractor={(item, index) => item.title + index}
                 renderItem={({ item }) => (
-                    <View
-                        className='justify-between p-4 bg-stone-400 m-3 rounded-xl'
-                        style={{ flexDirection: "row" }}
-                    >
-                        <View>
-                            <Text>{item.title}</Text>
-                            {item.ingredients.map((ing, index) => (
-                                <Text key={index}>{ing.name}</Text>
-                            ))}
+                    <Pressable onPress={() => {
+                        router.push('gens/Ingredients')
+                    }}>
+                        <View
+                            className='p-4 m-3 rounded-xl bg-[#AA0000]'
+                            style={styles.card}
+                        >
+                            <View>
+                                <Text>{item.title}</Text>
+                                {item.ingredients.map((ing, index) => (
+                                    <Text key={index}>{ing.name}</Text>
+                                ))}
+                            </View>
+                            <Image source={hambuger} style={{ width: 50, height: 50 }} />
                         </View>
-                        <Image source={hambuger} style={{ width: 50, height: 50 }} />
-                    </View>
+                    </Pressable>
                 )}
             />
 
-            
+
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    card: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    }
+})

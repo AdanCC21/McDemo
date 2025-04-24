@@ -1,7 +1,7 @@
 import React from 'react'
 import hambuger from '../../assets/images/hambuger.png'
 import { Text, Image, FlatList, View, Dimensions, Pressable } from 'react-native'
-import { useLocalSearchParams} from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import Feather from '@expo/vector-icons/Feather'
 import { router } from 'expo-router';
 
@@ -35,20 +35,22 @@ export default function OrderPrev() {
                 key={(item) => item.title}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
-                    <View className='justify-between p-4 bg-stone-400 m-3 rounded-xl' style={{ flexDirection: "row" }}>
-                        <View>
-                            <Text>{item.title}</Text>
-                            <FlatList
-                                data={item.ingredients}
-                                renderItem={({ item, index }) => (
-                                    <View>
-                                        <Text>{item.name}</Text>
-                                    </View>
-                                )}
-                            />
+                    <Pressable onPress={()=>{router.push('gens/Ingredients'),{}}}>
+                        <View className='justify-between p-4 bg-stone-400 m-3 rounded-xl' style={{ flexDirection: "row" }}>
+                            <View>
+                                <Text>{item.title}</Text>
+                                <FlatList
+                                    data={item.ingredients}
+                                    renderItem={({ item, index }) => (
+                                        <View>
+                                            <Text>{item.name}</Text>
+                                        </View>
+                                    )}
+                                />
+                            </View>
+                            <Image source={hambuger} style={{ width: 50, height: 50 }} />
                         </View>
-                        <Image source={hambuger} style={{ width: 50, height: 50 }} />
-                    </View>
+                    </Pressable>
                 )}
             />
             {/* Botón fijo al fondo */}
@@ -65,7 +67,7 @@ export default function OrderPrev() {
                     padding: 10,
                     borderRadius: 12,
                 }}
-                onPress={()=>{
+                onPress={() => {
                     router.push('/gens/Carrito');
                 }}
             >
