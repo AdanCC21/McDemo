@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Pressable, Dimensions, Image, FlatList } from 'react-native'
+import { View, Text, Pressable, Dimensions, Image, FlatList, StyleSheet } from 'react-native'
 import hambuger from '../../assets/images/hambuger.png'
 import { router } from 'expo-router'
 
@@ -26,7 +26,6 @@ export default function Carrito() {
         // Agrega más si quieres
     ]
 
-    const [amount, setAmount] = useState(0)
     const { width, height } = Dimensions.get('window')
 
     return (
@@ -45,8 +44,8 @@ export default function Carrito() {
                         router.push('gens/Ingredients')
                     }}>
                         <View
-                            className='justify-between p-4 bg-stone-400 m-3 rounded-xl'
-                            style={{ flexDirection: "row" }}
+                            className='p-4 m-3 rounded-xl bg-[#AA0000]'
+                            style={styles.card}
                         >
                             <View>
                                 <Text>{item.title}</Text>
@@ -64,3 +63,10 @@ export default function Carrito() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    card: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    }
+})
