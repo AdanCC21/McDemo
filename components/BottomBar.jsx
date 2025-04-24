@@ -15,7 +15,7 @@ export default function BottomBar() {
                 <Feather name="shopping-cart" size={24} color="black" />
                 <Text style={styles.texto}>Carrito</Text>
             </Pressable>
-            <Pressable style={styles.container} onPress={() => { router.push('gens') }}>
+            <Pressable style={styles.container} onPress={() => { router.push('gens/Mock') }}>
                 <FontAwesome name="map-marker" size={24} color="black" />
                 <Text style={styles.texto}>Maps</Text>
             </Pressable>
