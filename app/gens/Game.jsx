@@ -8,12 +8,10 @@ const prizes = [
   'Sigue intentando',
   'Cupón 50%',
   'Sigue intentando',
-  'Cupón 100%',
-  'Sigue intentando'
 ];
 
 const { width } = Dimensions.get('window');
-const WHEEL_SIZE = width * 0.80;
+const WHEEL_SIZE = width * 0.90;
 const NUM_SECTORS = prizes.length;
 const ANGLE_PER_SECTOR = 360 / NUM_SECTORS;
 
@@ -44,6 +42,8 @@ function Game() {
   };
 
   const renderSectors = () => {
+    const minLabelWidth = 100;
+    const fontSize = NUM_SECTORS > 8 ? 13 : NUM_SECTORS > 6 ? 15 : 15;
     return prizes.map((label, i) => {
       const rotate = i * ANGLE_PER_SECTOR;
       return (
@@ -64,23 +64,26 @@ function Game() {
             style={{
               position: 'absolute',
               top: 20,
-              left: WHEEL_SIZE / 2 - 60,
-              width: 120,
-              height: 40,
+              left: WHEEL_SIZE / 2 - minLabelWidth / 2,
+              width: minLabelWidth,
+              minWidth: minLabelWidth,
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: i % 2 === 0 ? '#FFD600' : '#fff',
-              borderRadius: 20,
-              elevation: 2,
+              borderRadius: 30,
+              elevation: 10,
               shadowColor: '#000',
-              shadowOffset: { width: 0, height: 1 },
+              shadowOffset: { width: 0, height: 2 },
               shadowOpacity: 0.2,
               shadowRadius: 2,
+              paddingHorizontal: 2,
+              paddingVertical: 2,
+              fontSize: 13,
             }}
             accessible={false}
             importantForAccessibility="no"
           >
-            <Text style={[styles.sectorText, { color: i % 2 === 0 ? '#fff' : '#e53935', fontWeight: 'bold' }]} accessible={false} importantForAccessibility="no">{label}</Text>
+            <Text style={[styles.sectorText, { color: i % 2 === 0 ? '#fff' : '#e53935', fontWeight: 'bold', fontSize }]} numberOfLines={3} ellipsizeMode="clip" accessible={false} importantForAccessibility="no">{label}</Text>
           </View>
         </View>
       );
