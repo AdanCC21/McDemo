@@ -17,20 +17,14 @@ export default function RootLayout() {
         <SafeAreaProvider>
             <AccessibilityProvider>
                 <AccessibilityOfferModal />
-                
-                <Stack
-                    screenOptions={{
-                        // Puedes definir aquí opciones globales si aplican a todas
-                        // header: () => (<Header />),
-                    }}
-                >
+                <Stack>
                     {/* Pantallas principales */}
                     <Stack.Screen name="index" options={{ headerShown: false }} />
-                    <Stack.Screen name="WelcomeSC/Welcome" options={{ headerShown: true, header: () => (<Header/>), title: 'Bienvenido' }}/>
-                    <Stack.Screen name="WelcomeSC/Discapacidades" options={{ headerShown: true, header: () => (<Header/>), title: 'Dificultades' }}/>
+                    <Stack.Screen name="WelcomeSC/Welcome" options={{ headerShown: false, header: () => (<Header/>), title: 'Bienvenido' }}/>
+                    <Stack.Screen name="WelcomeSC/Discapacidades" options={{ headerShown: false, header: () => (<Header/>), title: 'Dificultades' }}/>
 
                     {/* Grupo de pantallas 'screens'. headerShown: false aquí es correcto */}
-                    <Stack.Screen name="screens" options={{ headerShown: false }} />
+                    <Stack.Screen name="gens" options={{ headerShown: false }} />
 
                     {/* Otras pantallas principales */}
                 </Stack>
