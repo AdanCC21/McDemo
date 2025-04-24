@@ -6,7 +6,7 @@ export default function Discapacidades() {
     const { width, height } = Dimensions.get('window')
     const [disc, setDisc] = useState([false, false, false, false]);
     const handlePress = (index) => {
-        const temp = [...disc]; // Crea una copia del array para no mutar el estado directamente
+        const temp = [...disc];
         temp[index] = !temp[index];
         setDisc(temp);
     };
@@ -14,10 +14,12 @@ export default function Discapacidades() {
     return (
         <View style={{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }} className='bg-[#d62718]'>
             <View>
-                <Text style={{ color: 'white' }}>Dificultades</Text>
-                <Text style={{ color: 'white' }}>¿Cuentas con alguna de las siguientes dificultades?</Text>
+                <Text style={{ color: 'white', fontSize: 32 }} className='font-bold'>Dificultades</Text>
+
+                <Text style={{ color: 'white', fontSize: 18 }}>¿Cuentas con alguna de las siguientes dificultades?</Text>
             </View>
-            <ScrollView>
+
+            <View style={{ width: width * 0.8, marginHorizontal: width * 0.1 }}>
                 <View style={styles.discap}>
                     <Text style={{ color: 'white' }}>Sordera</Text>
                     <Pressable
@@ -74,14 +76,9 @@ export default function Discapacidades() {
                     onPress={() => {
                         router.push('gens');
                     }}>
-                    <Text style={{color:'white'}}>Continuar</Text>
+                    <Text className='font-bold' style={{ color: 'white', marginVertical: 5, marginHorizontal: 'auto' }}>Continuar</Text>
                 </Pressable>
-            </ScrollView>
-            <Pressable onPress={()=>{
-                router.push('/screens/Home');
-            }}>
-                <Text>Continuar</Text>
-            </Pressable>
+            </View>
         </View>
     )
 }
@@ -89,6 +86,7 @@ const styles = StyleSheet.create({
     discap: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-between',
+        marginVertical: 5,
     }
 })

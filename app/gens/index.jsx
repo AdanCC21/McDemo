@@ -1,60 +1,51 @@
 import React, { useRef } from 'react'
 import { FlatList, View, Dimensions, Text, Image, Pressable } from 'react-native'
 import hambuger from '../../assets/images/hambuger.png'
+import location from '../../assets/images/location.png'
 import cupon from '../../assets/images/icons/cupon.png'
 import { router } from 'expo-router'
-import BottomBar from '../../components/BottomBar'
+import PromoCarousel from '../../components/PromoCarousel';
 
 export default function index({ }) {
     const { width, height } = Dimensions.get('window');
     const carruRef = useRef(null);
 
     const listOfItems = [{
-        title: "texto 1"
+        title: "¿Vamos por tu BigMc?",
+        image: hambuger
     }, {
-        title: "texto 2"
-    }, {
-        title: "texto 3"
+        title: "Gracias por visitarnos!",
+        description: "Disfruta de beneficios exclusivos por estar dentro de la tienda",
+        image: location,
+        url: '/gens/Game'
     },]
 
     const fyp = [{
-        title: "comida 1",
+        title: "BigMc",
         price: 350
     }, {
-        title: "comida 2",
+        title: "McNífica",
         price: 100
     }, {
-        title: "comida 13",
+        title: "McTocino",
         price: 200
     },]
 
     return (
         <View className='px-3'>
             <View>
-                <FlatList
-                    data={listOfItems}
-                    keyExtractor={(_, index) => index.toString()}
-                    pagingEnabled
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item, index }) => (
-                        <View key={index} style={{ width: width * 0.8, height: height * 0.3, marginHorizontal: width * 0.1 }} className="bg-red-500">
-                            <Text>Hi, this is the item number {index}</Text>
-                            <Text>{item.title}</Text>
-                        </View>
-                    )}
-                />
+                <PromoCarousel listOfItems={listOfItems} />
             </View>
 
             <View>
-                <Text>Para ti</Text>
+                <Text className="font-bold text-2xl my-2 " >Para ti</Text>
                 <FlatList
                     data={fyp}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={(item, index) => item.title}
                     renderItem={({ item, index }) => (
-                        <Pressable className='mx-3'
+                        <Pressable className='mx-3 '
                             onPress={() => {
                                 router.push('/gens/OrderPrev', {
                                     title: item.title,
@@ -82,7 +73,7 @@ export default function index({ }) {
                 </FlatList>
             </View>
             <View className='bg-[#E0E0E0] my-2 py-3'>
-                <View className='flex-row'>
+                <View className='flex flex-row'>
                     <Image className='ml-3' style={{ width: 40, height: 40 }} source={cupon} />
                     <Text className='font-bold mx-2 my-auto' style={{ fontSize: 20 }}>Cupones</Text>
                 </View>
@@ -90,8 +81,6 @@ export default function index({ }) {
                     Presiona aqui para ver tus cupones
                 </Text>
             </View>
-            
-            
         </View>
     )
 }

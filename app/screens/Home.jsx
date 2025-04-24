@@ -31,13 +31,14 @@ export default function index({ }) {
         <View className='px-3'>
             <View>
                 <FlatList
+                    className="shadow-lg shadow-black rounded-full"
                     data={listOfItems}
                     keyExtractor={(_, index) => index.toString()}
                     pagingEnabled
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item, index }) => (
-                        <View key={index} style={{ width: width * 0.8, height: height * 0.3, marginHorizontal: width * 0.1 }} className="bg-red-500">
+                    renderItem={({ item, index }) => (  
+                        <View key={index} style={{ width: width * 0.8, height: height * 0.15, marginHorizontal: width * 0.1, backgroundColor: 'red', borderRadius: 10, shadowColor: 'black', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84, elevation: 5 }} >
                             <Text>Hi, this is the item number {index}</Text>
                             <Text>{item.title}</Text>
                         </View>
@@ -46,7 +47,7 @@ export default function index({ }) {
             </View>
 
             <View>
-                <Text>Para ti gay</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 24, marginVertical: 8}}>Para ti</Text>
                 <FlatList
                     data={fyp}
                     horizontal
@@ -70,7 +71,7 @@ export default function index({ }) {
                                     }]
                                 })
                             }}>
-                            <View key={index} className='bg-[#e1e1e1] rounded-lg' style={{ width: 120 }}>
+                            <View key={index} className='bg-[#e1e1e1] rounded-full' style={{ width: 120, height: 120 }}>
                                 <Image source={hambuger} className='m-auto' style={{ width: 100, height: 100 }} />
                             </View>
                             <Text className='font-bold' style={{ fontSize: 18 }}>{item.title}</Text>
