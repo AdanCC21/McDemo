@@ -39,18 +39,46 @@ export default function index({ }) {
 
     const fyp = [{
         title: "BigMc",
-        price: 350
+        price: 350,
+        Foods: [{
+            id: 23,
+            title: 'Hamburgesa',
+            price: 80,
+            ingredients: [{ name: 'Canre', priceBase: 10, amount: 2 }, { name: 'Queso', priceBase: 10, amount: 3 },{ name: 'Tomate', priceBase: 10, amount: 3 },{ name: 'Lechuga', priceBase: 10, amount: 3 }]
+        }],
     }, {
-        title: "McNífica",
-        price: 100
+        title: "McDesayuno",
+        price: 100,
+        Foods: [{
+            id: 23,
+            title: 'HotCake',
+            price: 80,
+            ingredients: [{ name: 'Huevo', priceBase: 10, amount: 2 }, { name: 'Hot Cakes', priceBase: 10, amount: 3 }]
+        }, {
+            id: 901,
+            title: 'Papa empanizada',
+            price: 20,
+            ingredients: [{ name: 'Papa', priceBase: 20, amount: 2 }]
+        }],
     }, {
         title: "McTocino",
-        price: 200
+        price: 200,
+        Foods: [{
+            id: 23,
+            title: 'HotCake',
+            price: 80,
+            ingredients: [{ name: 'Huevo', priceBase: 10, amount: 2 }, { name: 'Hot Cakes', priceBase: 10, amount: 3 }]
+        }, {
+            id: 901,
+            title: 'Extra',
+            price: 20,
+            ingredients: [{ name: 'Tocino', priceBase: 20, amount: 2 }]
+        }],
     },]
 
     return (
         <View className='px-3'>
-            <View style={{paddingTop:10}}>
+            <View style={{ paddingTop: 10 }}>
                 <PromoCarousel listOfItems={listOfItems} />
             </View>
 
@@ -64,20 +92,28 @@ export default function index({ }) {
                     renderItem={({ item, index }) => (
                         <Pressable className='mx-3 '
                             onPress={() => {
-                                router.push('/gens/OrderPrev', {
-                                    title: item.title,
-                                    price: item.price,
-                                    foods: [{
-                                        id: 1,
-                                        title: item.title,
-                                        price: item.price,
-                                        ingredients: [
-                                            { name: 'Pan', amount: 1, basePrice: 5 },
-                                            { name: 'Carne', amount: 1, basePrice: 20 },
-                                            { name: 'Queso', amount: 1, basePrice: 10 },
-                                        ]
-                                    }]
+                                router.push({
+                                    pathname:'/gens/OrderPrev',
+                                    params:{
+                                        title:item.title,
+                                        price:item.price,
+                                        foodsParm:JSON.stringify(item.Foods)
+                                    }
                                 })
+                                // router.push('/gens/OrderPrev', {
+                                //     title: item.title,
+                                //     price: item.price,
+                                //     foods: [{
+                                //         id: 1,
+                                //         title: item.title,
+                                //         price: item.price,
+                                //         ingredients: [
+                                //             { name: 'Pan', amount: 1, basePrice: 5 },
+                                //             { name: 'Carne', amount: 1, basePrice: 20 },
+                                //             { name: 'Queso', amount: 1, basePrice: 10 },
+                                //         ]
+                                //     }]
+                                // })
                             }}>
                             <View key={index} style={[styles.card, { width: 120 }]}>
                                 <Image source={hambuger} className='m-auto' style={{ width: 100, height: 100 }} />
@@ -89,8 +125,8 @@ export default function index({ }) {
                 >
                 </FlatList>
             </View>
-            
-            <Pressable style={{marginVertical:10}} onPress={openCouponModal}>
+
+            <Pressable style={{ marginVertical: 10 }} onPress={openCouponModal}>
                 <View style={styles.card} className='my-2 py-5 px-3'>
                     <View className='flex flex-row'>
                         <Image className='ml-3' style={{ width: 40, height: 40 }} source={cupon} />

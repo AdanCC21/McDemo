@@ -23,8 +23,11 @@ const foodsE = [{
 }]
 
 export default function OrderPrev() {
-    const { title = "Hamburgesa Sencilla", price = 150, foods = [] } = useLocalSearchParams();
+    const { title = "", price = 150, foodsParm } = useLocalSearchParams();
+    const foods = foodsParm ? JSON.parse(foodsParm) : [];
+    
     const { width, height } = Dimensions.get('window');
+    
     return (
         <View style={{ flex: 1 }}>
             {/* Combinacion de todo */}
@@ -36,7 +39,7 @@ export default function OrderPrev() {
 
             {/* Lista de comidas */}
             <FlatList
-                data={foodsE}
+                data={foods}
                 key={(item) => item.title}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => (
