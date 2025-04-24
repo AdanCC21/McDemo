@@ -37,7 +37,7 @@ export default function Ingredients() {
                 keyExtractor={(_, index) => index.toString()}
                 contentContainerStyle={styles.listContent}
                 renderItem={({ item }) => (
-                    <View className='border border-[#838383] rounded-xl items-center justify-between px-3 py-2 my-3' style={styles.ingredientItem}>
+                    <View className=' items-center justify-between px-3 py-2 my-3' style={styles.card}>
                         <View style={styles.ingredientInfo}>
                             <Image source={hambuger} style={{ width: 30, height: 30 }} />
                             <Text className='mx-3'>{item.name}</Text>
@@ -53,7 +53,7 @@ export default function Ingredients() {
                 keyExtractor={(_, index) => index.toString()}
                 contentContainerStyle={styles.listContent}
                 renderItem={({ item }) => (
-                    <View className='border border-[#838383] rounded-xl items-center justify-between px-3 py-2 my-3' style={styles.ingredientItem}>
+                    <View className='items-center justify-between px-3 py-2 my-3' style={styles.card}>
                         <View style={styles.ingredientInfo}>
                             <Image source={hambuger} style={{ width: 30, height: 30 }} />
                             <Text className='mx-3'>{item.name}</Text>
@@ -105,12 +105,15 @@ const styles = StyleSheet.create({
     listContent: {
         paddingBottom: 20,
     },
-    ingredientItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
     ingredientInfo: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    card: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderRadius: 12,
+        elevation: 6,
+        backgroundColor: 'white'
     }
 });
