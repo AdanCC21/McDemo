@@ -1,98 +1,81 @@
-import { router } from 'expo-router';
-import React, { useState } from 'react'
-import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useAccessibility } from '../../AccessibilityContext';
 
-export default function Discapacidades() {
-    const { width, height } = Dimensions.get('window')
-    const [disc, setDisc] = useState([false, false, false, false]);
-    const handlePress = (index) => {
-        if (index === 3) {
-            const temp = [false,false,false,true];
-            setDisc(temp);
-        } else {
-            const temp = [...disc];
-            temp[3] = false;
-            temp[index] = !temp[index];
-            setDisc(temp);
-        }
-    };
+export default function DiscapacidadesScreen() {
+  const { width, height } = Dimensions.get('window');
+  const [disc, setDisc] = useState([false, false, false, false]);
+  const router = useRouter();
+  const { triggerManualAccessibilityOffer } = useAccessibility();
 
-    return (
-        <View style={{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }} className='bg-[#d62718]'>
-            <View>
-                <Text style={{ color: 'white', fontSize: 32 }} className='font-bold'>Dificultades</Text>
-
-                <Text style={{ color: 'white', fontSize: 18 }}>¿Cuentas con alguna de las siguientes dificultades?</Text>
-            </View>
-
-            <View style={{ width: width * 0.8, marginHorizontal: width * 0.1 }}>
-                <View style={styles.discap}>
-                    <Text style={{ color: 'white' }}>Sordera</Text>
-                    <Pressable
-                        onPress={() => {
-                            handlePress(0);
-                        }}
-                    >
-                        {disc[0] ? (
-                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
-                        )}
-                    </Pressable>
-                </View>
-                <View style={styles.discap}>
-                    <Text style={{ color: 'white' }}>Cegera</Text>
-                    <Pressable
-                        onPress={() => {
-                            handlePress(1);
-                        }}
-                    >
-                        {disc[1] ? (
-                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
-                        )}
-                    </Pressable>
-                </View>
-                <View style={styles.discap}>
-                    <Text style={{ color: 'white' }}>Motriz</Text>
-                    <Pressable
-                        onPress={() => {
-                            handlePress(2);
-                        }}
-                    >
-                        {disc[2] ? (
-                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
-                        )}
-                    </Pressable>
-                </View>
-                <View style={styles.discap}>
-                    <Text style={{ color: 'white' }}>Ninguna</Text>
-                    <Pressable
-                        onPress={() => {
-                            handlePress(3);
-                        }}
-                    >
-                        {disc[3] ? (
-                            <View style={{ width: 10, height: 10, }} className='bg-[#ffffff] rounded-full'></View>) : (
-                            <View style={{ width: 10, height: 10 }} className='bg-[#] border border-white rounded-full'></View>
-                        )}
-                    </Pressable>
-                </View>
-                <Pressable
-                    onPress={() => {
-                        router.push('gens');
-                    }}>
-                    <Text className='font-bold' style={{ color: 'white', marginVertical: 5, marginHorizontal: 'auto' }}>Continuar</Text>
-                </Pressable>
-            </View>
-        </View>
-    )
-}
-const styles = StyleSheet.create({
-    discap: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginVertical: 5,
+  const handlePress = (index) => {
+    const temp = [...disc];
+    temp[index] = !temp[index];
+    if (index === 3 && temp[3]) {
+      temp[0] = false; temp[1] = false; temp[2] = false;
+    } else if (index !== 3 && temp[3]) {
+      temp[3] = false;
     }
-})
+    setDisc(temp);
+  };
+
+  const handleContinuar = () => {
+    const isMotrizSelected = disc[2];
+    if (isMotrizSelected) {
+      triggerManualAccessibilityOffer();
+    }
+    router.push('/screens/Home');
+  };
+
+  return (
+    <View style={{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }} className='bg-[#d62718]'>
+      <View>
+        <Text style={{ color: 'white' }}>Dificultades</Text>
+        <Text style={{ color: 'white' }}>¿Cuentas con alguna de las siguientes dificultades?</Text>
+      </View>
+      <ScrollView>
+        {['Sordera', 'Cegera', 'Motriz', 'Ninguna'].map((label, index) => (
+          <View key={index} style={styles.discap}>
+            <Text style={{ color: 'white' }}>{label}</Text>
+            <Pressable onPress={() => handlePress(index)}>
+              <View style={{ width: 10, height: 10 }} className={disc[index] ? 'bg-[#eeFF00]' : 'bg-[#0000ff]'} />
+            </Pressable>
+          </View>
+        ))}
+
+        <Pressable onPress={() => router.push('gens')}>
+          <Text style={{ color: 'white' }}>Continuar</Text>
+        </Pressable>
+
+        {disc[2] && (
+          <Pressable onPress={handleContinuar} style={styles.continueButton}>
+            <Text style={styles.continueButtonText}>Activar modo accesible y continuar</Text>
+          </Pressable>
+        )}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  discap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
+  continueButton: {
+    marginTop: 20,
+    backgroundColor: '#007AFF',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignSelf: 'center',
+  },
+  continueButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
