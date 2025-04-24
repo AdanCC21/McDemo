@@ -17,20 +17,6 @@ export default function VisualMockScreen() {
 
             <View style={styles.header}>
                 <Pressable>
-                    {<Ionicons name="person-outline" size={28} color="#333" />}
-                    <Image source={personIconPlaceholder} style={styles.headerIcon} />
-                </Pressable>
-                <View style={styles.searchContainer}>
-                    {<Ionicons name="search-outline" size={20} color="#666" style={styles.searchIcon} />}
-                    <Image source={searchIconPlaceholder} style={[styles.headerIcon, styles.searchIcon]} />
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder="Buscar"
-                        placeholderTextColor="#666"
-                    />
-                </View>
-                <Pressable>
-                    <Image source={userIconPlaceholder} style={styles.profileIcon} />
                 </Pressable>
             </View>
 
