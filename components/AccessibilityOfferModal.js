@@ -8,7 +8,7 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
-
+import { router } from 'expo-router';
 import { useAccessibility } from '../AccessibilityContext';
 import * as IntentLauncher from 'expo-intent-launcher';
 
@@ -43,6 +43,7 @@ const AccessibilityOfferModal = () => {
   const handleAccept = () => {
     markOfferAsSeen();
     openAccessibilitySettings(); // <-- Redirige a ajustes
+    router.push('../gens');
   };
 
   const handleDecline = () => {
