@@ -44,13 +44,13 @@ export default function Carrito() {
                         router.push('gens/Ingredients')
                     }}>
                         <View
-                            className='p-4 m-3 rounded-xl bg-[#AA0000]'
+                            className='p-4 m-3 rounded-xl'
                             style={styles.card}
                         >
                             <View>
-                                <Text>{item.title}</Text>
+                                <Text style={styles.cardTitle} >{item.title}</Text>
                                 {item.ingredients.map((ing, index) => (
-                                    <Text key={index}>{ing.name}</Text>
+                                    <Text style={styles.cardList} key={index}>{ing.name}</Text>
                                 ))}
                             </View>
                             <Image source={hambuger} style={{ width: 50, height: 50 }} />
@@ -58,8 +58,6 @@ export default function Carrito() {
                     </Pressable>
                 )}
             />
-
-
         </View>
     )
 }
@@ -68,5 +66,14 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        elevation: 6,
+        backgroundColor: 'white'
+    },
+    cardTitle: {
+        fontSize: 20,
+    },
+    cardList: {
+        fontSize: 12,
+        fontWeight: 400
     }
 })
